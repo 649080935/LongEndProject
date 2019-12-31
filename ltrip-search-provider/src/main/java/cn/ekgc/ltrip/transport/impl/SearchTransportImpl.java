@@ -1,6 +1,6 @@
 package cn.ekgc.ltrip.transport.impl;
 
-import cn.ekgc.ltrip.pojo.vo.ItripHotelVO;
+import cn.ekgc.ltrip.pojo.vo.HotelVO;
 import cn.ekgc.ltrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.ltrip.search.transport.SearchTransport;
 import cn.ekgc.ltrip.service.SearchService;
@@ -20,7 +20,7 @@ public class SearchTransportImpl implements SearchTransport {
 	private SearchService searchService;
 
 	@RequestMapping(value = "/searchItripHotelListByHotCity", method = RequestMethod.POST)
-	public List<ItripHotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception {
+	public List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception {
 		return searchService.searchItripHotelListByHotCity(searchHotCityVO);
 	}
 }

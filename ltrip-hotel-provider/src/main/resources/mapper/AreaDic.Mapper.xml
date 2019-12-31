@@ -30,7 +30,7 @@
 		<result property="areaNo" javaType="java.lang.String" column="areaNo"/>
 		<result property="isActivated" javaType="java.lang.Integer" column="isActivated"/>
 		<result property="isTradingArea" javaType="java.lang.Integer" column="isTradingArea"/>
-		<result property="issHot" javaType="java.lang.Integer" column="isHot"/>
+		<result property="isHot" javaType="java.lang.Integer" column="isHot"/>
 		<result property="level" javaType="java.lang.Integer" column="level"/>
 		<result property="isChina" javaType="java.lang.Integer" column="isChina"/>
 		<result property="pinyin" javaType="java.lang.String" column="pinyin"/>

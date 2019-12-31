@@ -2,7 +2,7 @@ package cn.ekgc.ltrip.controller;
 
 import cn.ekgc.ltrip.base.controller.BaseController;
 import cn.ekgc.ltrip.base.enums.SuccessEnum;
-import cn.ekgc.ltrip.pojo.vo.ItripHotelVO;
+import cn.ekgc.ltrip.pojo.vo.HotelVO;
 import cn.ekgc.ltrip.pojo.vo.ResponseResult;
 import cn.ekgc.ltrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.ltrip.search.transport.SearchTransport;
@@ -27,7 +27,7 @@ public class SearchController extends BaseController {
 		// 校验所传递的数据是否有效
 		if (searchHotCityVO.getCityId() != null && searchHotCityVO.getCityId() > 0
 				&& searchHotCityVO.getCount() != null && searchHotCityVO.getCount() > 0) {
-			List<ItripHotelVO> itripHotelVOList = searchTransport.searchItripHotelListByHotCity(searchHotCityVO);
+			List<HotelVO> itripHotelVOList = searchTransport.searchItripHotelListByHotCity(searchHotCityVO);
 			return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, itripHotelVOList);
 		} else {
 			return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写有效信息");

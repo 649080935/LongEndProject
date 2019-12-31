@@ -1,6 +1,6 @@
 package cn.ekgc.ltrip.service.impl;
 
-import cn.ekgc.ltrip.pojo.vo.ItripHotelVO;
+import cn.ekgc.ltrip.pojo.vo.HotelVO;
 import cn.ekgc.ltrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.ltrip.service.SearchService;
 import org.apache.solr.client.solrj.SolrClient;
@@ -21,7 +21,7 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private SolrClient solrClient;
 
-	public List<ItripHotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception {
+	public List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO searchHotCityVO) throws Exception {
 		// 对于Spring Boot注入的SolrClient就是HttpSolrClient对象，进行强制类型转换
 		HttpSolrClient httpSolrClient = (HttpSolrClient) solrClient;
 		httpSolrClient.setParser(new XMLResponseParser());
@@ -32,6 +32,6 @@ public class SearchServiceImpl implements SearchService {
 		// 使用SolrClient进行查询，QueryResponse
 		QueryResponse queryResponsey = solrClient.query(solrQuery);
 		// 通过使用QueryResponse提取结果
-		return queryResponsey.getBeans(ItripHotelVO.class);
+		return queryResponsey.getBeans(HotelVO.class);
 	}
 }

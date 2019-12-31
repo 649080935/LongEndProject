@@ -1,10 +1,10 @@
 ### 项目启动端口号
 server:
-  port: 6666
+  port: 7777
 spring:
   ### 项目应用名
   application:
-    name: ltrip-user-consumer
+    name: ltrip-hotel-consumer
   main:
     allow-bean-definition-overriding: true
 #hystrix的超时时间
