@@ -63,4 +63,9 @@ public class HotelController extends BaseController {
 		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, "", hotelPolicy);
 	}
 
+	@RequestMapping(value = "/querytradearea/{cityId}", method = RequestMethod.GET)
+	public ResponseResult<Object> querytradearea(@PathVariable("cityId") Long cityId) throws Exception {
+		List<AreaDic> areaDicList = hotelTransport.querytradearea(cityId);
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, "", areaDicList);
+	}
 }

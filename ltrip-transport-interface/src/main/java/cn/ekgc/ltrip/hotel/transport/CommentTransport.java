@@ -23,4 +23,6 @@ public interface CommentTransport {
 
 	@RequestMapping(value = "/getcommentlist", method = RequestMethod.POST)
 	Page<Comment> getCommentListByPage(@RequestBody SearchCommentVO queryVO) throws Exception;
+
+
 }

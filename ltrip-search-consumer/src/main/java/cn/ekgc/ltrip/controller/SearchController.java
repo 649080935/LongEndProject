@@ -5,8 +5,10 @@ import cn.ekgc.ltrip.base.enums.SuccessEnum;
 import cn.ekgc.ltrip.pojo.vo.HotelVO;
 import cn.ekgc.ltrip.pojo.vo.ResponseResult;
 import cn.ekgc.ltrip.pojo.vo.SearchHotCityVO;
+import cn.ekgc.ltrip.pojo.vo.SearchHotelVO;
 import cn.ekgc.ltrip.search.transport.SearchTransport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,4 +36,13 @@ public class SearchController extends BaseController {
 		}
 	}
 
+	@RequestMapping(value = "/hotellist/searchItripHotelPage", method = RequestMethod.POST)
+	public ResponseResult<Object> searchItripHotelPage(@RequestBody SearchHotelVO searchHotelVO) throws Exception {
+		if (searchHotelVO.getDestination() != null && !"".equals(searchHotelVO.getDestination().trim())) {
+			List<SearchHotelVO> searchHotelVOList = searchTransport.searchItripHotelPage(searchHotelVO);
+			return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, searchHotelVOList);
+		}else {
+			return new ResponseResult<>(SuccessEnum.SUCCESS_FALSE, "请填写有效信息");
+		}
+	}
 }

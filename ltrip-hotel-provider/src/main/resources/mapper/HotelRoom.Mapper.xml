@@ -4,48 +4,48 @@
 <mapper namespace="cn.ekgc.ltrip.dao.HotelRoomDao">
 	<select id="findHotelRoomListByQuery" parameterType="java.util.Map" resultMap="hotelRoomMap">
 		select
-			id as id,
-            hotelId as hotelId,
-            roomTitle as roomTitle,
-            roomPrice as roomPrice,
-            roomBedTypeId as roomBedTypeId,
-            isHavingBreakfast as isHavingBreakfast,
-            payType as payType,
-            satisfaction as satisfaction,
-            isBook as isBook,
-            isCancel as isCancel,
-            isTimelyResponse as isTimelyResponse
-        from itrip_hotel_room ihr
-        <where>
-	        <trim suffixOverrides="and">
-		        <if test="id != null">ihr.id=#{id} and</if>
-		        <if test="hotelId != null">ihr.hotelId=#{hotelId} and</if>
-		        <if test="roomTitle != null">ihr.roomTitle=#{roomTitle} and</if>
-		        <if test="roomPrice != null">ihr.roomPrice=#{roomPrice} and</if>
-		        <if test="roomBedTypeId != null">ihr.roomBedTypeId=#{roomBedTypeId} and</if>
-		        <if test="isHavingBreakfast != null">ihr.isHavingBreakfast=#{isHavingBreakfast} and</if>
-		        <if test="payType != null">ihr.payType=#{payType} and</if>
-		        <if test="satisfaction != null">ihr.satisfaction=#{satisfaction} and</if>
-		        <if test="isBook != null">ihr.isBook=#{isBook} and</if>
-		        <if test="isCancel != null">ihr.isCancel=#{isCancel} and</if>
-		        <if test="isTimelyResponse != null">ihr.isTimelyResponse=#{isTimelyResponse} and</if>
-		        <if test="startDate != null and endDate != null">
-			        (
-			        	(
-			        		(SELECT iht.store FROM	itrip_hotel_temp_store iht	WHERE	roomId = ihr.id AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{startDate}, '%Y-%m-%d')) IS NULL
-			        		OR
-			        		(SELECT	iht.store FROM	itrip_hotel_temp_store iht	WHERE roomId = ihr.id	AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{startDate}, '%Y-%m-%d')) > 0
-			       		 )
-			        	and
-			        	(
-			        		(SELECT iht.store FROM	itrip_hotel_temp_store iht	WHERE	roomId = ihr.id AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{endDate}, '%Y-%m-%d')) IS NULL
-			        		OR
-			        		(SELECT	iht.store FROM	itrip_hotel_temp_store iht	WHERE roomId = ihr.id	AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{endDate}, '%Y-%m-%d')) > 0
-			        	)
-			        )
-		        </if>
-	        </trim>
-        </where>
+		id as id,
+		hotelId as hotelId,
+		roomTitle as roomTitle,
+		roomPrice as roomPrice,
+		roomBedTypeId as roomBedTypeId,
+		isHavingBreakfast as isHavingBreakfast,
+		payType as payType,
+		satisfaction as satisfaction,
+		isBook as isBook,
+		isCancel as isCancel,
+		isTimelyResponse as isTimelyResponse
+		from itrip_hotel_room ihr
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">ihr.id=#{id} and</if>
+				<if test="hotelId != null">ihr.hotelId=#{hotelId} and</if>
+				<if test="roomTitle != null">ihr.roomTitle=#{roomTitle} and</if>
+				<if test="roomPrice != null">ihr.roomPrice=#{roomPrice} and</if>
+				<if test="roomBedTypeId != null">ihr.roomBedTypeId=#{roomBedTypeId} and</if>
+				<if test="isHavingBreakfast != null">ihr.isHavingBreakfast=#{isHavingBreakfast} and</if>
+				<if test="payType != null">ihr.payType=#{payType} and</if>
+				<if test="satisfaction != null">ihr.satisfaction=#{satisfaction} and</if>
+				<if test="isBook != null">ihr.isBook=#{isBook} and</if>
+				<if test="isCancel != null">ihr.isCancel=#{isCancel} and</if>
+				<if test="isTimelyResponse != null">ihr.isTimelyResponse=#{isTimelyResponse} and</if>
+				<if test="startDate != null and endDate != null">
+					(
+					(
+					(SELECT iht.store FROM	itrip_hotel_temp_store iht	WHERE	roomId = ihr.id AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{startDate}, '%Y-%m-%d')) IS NULL
+					OR
+					(SELECT	iht.store FROM	itrip_hotel_temp_store iht	WHERE roomId = ihr.id	AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{startDate}, '%Y-%m-%d')) > 0
+					)
+					and
+					(
+					(SELECT iht.store FROM	itrip_hotel_temp_store iht	WHERE	roomId = ihr.id AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{endDate}, '%Y-%m-%d')) IS NULL
+					OR
+					(SELECT	iht.store FROM	itrip_hotel_temp_store iht	WHERE roomId = ihr.id	AND date_format(iht.recordDate, '%Y-%m-%d') = date_format(#{endDate}, '%Y-%m-%d')) > 0
+					)
+					)
+				</if>
+			</trim>
+		</where>
 	</select>
 
 	<select id="findHotelImageListByQuery" parameterType="java.util.Map" resultMap="hotelImageMap">
@@ -63,6 +63,10 @@
 				<if test="typeId != null">ii.type=#{typeId} and</if>
 			</trim>
 		</where>
+	</select>
+
+	<select id="findTotalRoomStore" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		select store from itrip_product_store ips where productId=#{roomId}
 	</select>
 
 	<resultMap id="hotelRoomMap" type="HotelRoom">

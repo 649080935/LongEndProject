@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @MapperScan("cn.ekgc.ltrip.dao")
 @EnableEurekaClient
 @SpringBootApplication
-public class UserProviderStarter {
-	public static void main(String[] args) {
-		SpringApplication.run(UserProviderStarter.class, args);
-	}
+public class UserProviderStarter {	public static void main(String[] args) {
+	SpringApplication.run(UserProviderStarter.class, args);
+}
+
 }

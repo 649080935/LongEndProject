@@ -33,4 +33,7 @@ public interface HotelTransport {
 
 	@RequestMapping(value = "/queryhotelpolicy", method = RequestMethod.POST)
 	String queryHotelPolicy(@RequestParam Long id) throws Exception;
+
+	@RequestMapping(value = "/querytradearea", method = RequestMethod.POST)
+	List<AreaDic> querytradearea(@RequestParam Long cityId) throws Exception;
 }

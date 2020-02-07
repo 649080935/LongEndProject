@@ -48,9 +48,7 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	public Page<Comment> getCommentListByPage(SearchCommentVO queryVO) throws Exception {
-		// 根据查询视图进行封装查询Map集合
-		Map
-				<String, Object> queryMap = new HashMap<String, Object>();
+		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("hotelId", queryVO.getHotelId());
 		if (queryVO.getIsHavingImg() != -1) {
 			queryMap.put("isHavingImg", queryVO.getIsHavingImg());
@@ -74,4 +72,5 @@ public class CommentServiceImpl implements CommentService {
 
 		return page;
 	}
+
 }

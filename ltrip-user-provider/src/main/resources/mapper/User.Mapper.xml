@@ -21,6 +21,28 @@
 		</where>
 	</select>
 
+	<select id="findLinkUserListByQuery" parameterType="java.util.Map" resultMap="linkUserMap">
+		select
+		iulu.id,
+		iulu.linkUserName,
+		iulu.linkIdCard,
+		iulu.linkPhone,
+		iulu.userId,
+		iulu.creationDate,
+		iulu.createdBy,
+		iulu.modifyDate,
+		iulu.modifiedBy
+		from
+		itrip_user_link_user iulu join itrip_user iu on iulu.userId=iu.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="userCode != null">
+					iu.userCode=#{userCode} and
+				</if>
+			</trim>
+		</where>
+	</select>
+
 	<insert id="saveUser" parameterType="User">
 		insert into itrip_user(
 			userCode, userPassword, userName, activated
@@ -42,6 +64,52 @@
 		</where>
 	</update>
 
+	<update id="updateUserLinkUser" parameterType="UserLinkUser">
+		UPDATE
+ 			itrip_user_link_user
+		SET
+		<trim suffixOverrides=",">
+			<if test="linkUserName != null">linkUserName=#{linkUserName},</if>
+			<if test="linkIdCard != null">linkIdCard=#{linkIdCard},</if>
+			<if test="linkPhone != null">linkPhone=#{linkPhone},</if>
+			<if test="modifyDate != null">modifyDate=#{modifyDate},</if>
+			<if test="modifiedBy != null">modifiedBy=#{modifiedBy},</if>
+		</trim>
+		WHERE
+			id=#{id}
+	</update>
+
+	<insert id="saveUserLinkUser" parameterType="UserLinkUser">
+        insert into itrip_user_link_user(
+        				id,
+                        linkUserName,
+                        linkIdCardType,
+                        linkIdCard,
+                        linkPhone,
+                        userId,
+                        creationDate,
+                        createdBy,
+                        modifyDate,
+                        modifiedBy)
+        values(
+        			 #{id}
+                     #{linkUserName},
+                     #{linkIdCardType},
+                     #{linkIdCard},
+                     #{linkPhone},
+                     #{userId},
+                     #{creationDate},
+                     #{createdBy},
+                     #{modifyDate},
+                    #{modifiedBy})
+    </insert>
+
+	<delete id="deleteUserLinkUserByIds" parameterType="UserLinkUser">
+		DELETE FROM itrip_user_link_user
+		WHERE
+			id=#{id}
+	</delete>
+
 	<resultMap id="userMap" type="User">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="userCode" javaType="java.lang.String" column="userCode"/>
@@ -49,5 +117,14 @@
 		<result property="userType" javaType="java.lang.Integer" column="userType"/>
 		<result property="flatID" javaType="java.lang.Long" column="flatID"/>
 		<result property="userName" javaType="java.lang.String" column="userName"/>
+	</resultMap>
+
+	<resultMap id="linkUserMap" type="UserLinkUser">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"/>
+		<result property="linkIdCard" javaType="java.lang.String" column="linkIdCard"/>
+		<result property="linkPhone" javaType="java.lang.String" column="linkPhone"/>
+		<result property="userId" javaType="java.lang.Long" column="userId"/>
+		<result property="linkIdCardType" javaType="java.lang.Integer" column="linkIdCardType"/>
 	</resultMap>
 </mapper>

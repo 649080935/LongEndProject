@@ -27,4 +27,12 @@ public class AreaDicServiceImpl implements AreaDicService {
 
 		return areaDicDao.findAreaDicListByQuery(queryMap);
 	}
+
+	public List<AreaDic> querytradearea(Long cityId) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+
+		queryMap.put("cityId", cityId);
+
+		return areaDicDao.findTradeAreaByQuery(queryMap);
+	}
 }

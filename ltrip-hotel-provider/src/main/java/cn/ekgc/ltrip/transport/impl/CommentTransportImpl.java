@@ -36,4 +36,5 @@ public class CommentTransportImpl implements CommentTransport {
 		return commentService.getCommentListByPage(queryVO);
 	}
 
+
 }

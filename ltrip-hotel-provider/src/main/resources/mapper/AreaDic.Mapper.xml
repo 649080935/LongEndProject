@@ -24,6 +24,30 @@
 		</where>
 	</select>
 
+	<select id="findTradeAreaByQuery" parameterType="java.util.Map" resultMap="tradeAreaMap">
+		SELECT
+			ih.cityId,
+			ih.hotelName,
+			ih.address,
+			ih.details,
+			ih.facilities,
+			ih.hotelPolicy,
+			ih.hotelType,
+			ih.hotelLevel,
+			ih.isGroupPurchase,
+			ih.redundantCityName,
+			ih.redundantProvinceName,
+			ih.redundantCountryName,
+			ih.redundantHotelStore
+		FROM
+			itrip_hotel ih
+ 		<where>
+		    <trim suffixOverrides="and">
+			    <if test="cityId != null">cityId=#{cityId} and</if>
+		    </trim>
+	    </where>
+	</select>
+
 	<resultMap id="areaDicMap" type="AreaDic">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="name" javaType="java.lang.String" column="name"/>
@@ -34,5 +58,21 @@
 		<result property="level" javaType="java.lang.Integer" column="level"/>
 		<result property="isChina" javaType="java.lang.Integer" column="isChina"/>
 		<result property="pinyin" javaType="java.lang.String" column="pinyin"/>
+	</resultMap>
+
+	<resultMap id="tradeAreaMap" type="Hotel">
+		<id property="cityId" javaType="java.lang.Long" column="cityId"/>
+		<result property="hotelName" javaType="java.lang.String" column="hotelName"/>
+		<result property="address" javaType="java.lang.String" column="address"/>
+		<result property="details" javaType="java.lang.String" column="details"/>
+		<result property="facilities" javaType="java.lang.String" column="facilities"/>
+		<result property="hotelPolicy" javaType="java.lang.String" column="hotelPolicy"/>
+		<result property="hotelType" javaType="java.lang.Integer" column="hotelType"/>
+		<result property="hotelLevel" javaType="java.lang.Integer" column="hotelLevel"/>
+		<result property="isGroupPurchase" javaType="java.lang.Integer" column="isGroupPurchase"/>
+		<result property="redundantCityName" javaType="java.lang.String" column="redundantCityName"/>
+		<result property="redundantProvinceName" javaType="java.lang.String" column="redundantProvinceName"/>
+		<result property="redundantCountryName" javaType="java.lang.String" column="redundantCountryName"/>
+		<result property="redundantHotelStore" javaType="java.lang.Integer" column="redundantHotelStore"/>
 	</resultMap>
 </mapper>

@@ -24,7 +24,6 @@ public class HotelRoomServiceImpl implements HotelRoomService {
 	private HotelRoomDao hotelRoomDao;
 
 	public List<HotelRoomVO> queryHotelRoomByHotel(SearchHotelRoomVO searchHotelRoomVO) throws Exception {
-		// 根据搜索视图，封装查询Map集合
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("hotelId", searchHotelRoomVO.getHotelId());
 		queryMap.put("isBook", searchHotelRoomVO.getIsBook());

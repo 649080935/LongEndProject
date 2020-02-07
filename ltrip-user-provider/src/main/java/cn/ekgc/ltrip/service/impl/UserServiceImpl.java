@@ -2,6 +2,8 @@ package cn.ekgc.ltrip.service.impl;
 
 import cn.ekgc.ltrip.dao.UserDao;
 import cn.ekgc.ltrip.pojo.entity.User;
+import cn.ekgc.ltrip.pojo.entity.UserLinkUser;
+import cn.ekgc.ltrip.pojo.vo.ModifyUserLinkUserVO;
 import cn.ekgc.ltrip.service.UserService;
 import cn.ekgc.ltrip.util.ActiveCodeUtil;
 import cn.ekgc.ltrip.util.ConstantUtil;
@@ -12,6 +14,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 		if (userList != null && userList.size() > 0) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
@@ -52,7 +55,7 @@ public class UserServiceImpl implements UserService {
 			String activeCode = ActiveCodeUtil.createActiveCode();
 			if (activeCode.matches(ConstantUtil.REGEX_EMAIL)) {
 				emailUtil.sendEmail(user.getUserCode(), activeCode);
-			}else {
+			} else {
 				smsUtil.sendSMS(user.getUserCode(), activeCode);
 			}
 
@@ -62,7 +65,7 @@ public class UserServiceImpl implements UserService {
 			redisTemplate.expire(user.getUserCode(), ConstantUtil.ACTIVE_CODE_TIMEOUT * 60, TimeUnit.SECONDS);
 
 			return true;
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -80,7 +83,7 @@ public class UserServiceImpl implements UserService {
 				userDao.updateUser(user);
 				return true;
 			}
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
@@ -97,4 +100,39 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+
+	public User getUserByUserCode(String userCode) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+		// 进行查询
+		List<User> userList = userDao.findUserListByQuery(queryMap);
+		System.out.println(userList);
+		if (userList != null && userList.size() > 0) {
+			return userList.get(0);
+		}
+		return null;
+	}
+
+	public List<UserLinkUser> getLinkUserListByLogin(String userCode) throws Exception {
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("userCode", userCode);
+
+		List<UserLinkUser> linkUserList = userDao.findLinkUserListByQuery(queryMap);
+		return linkUserList;
+	}
+
+	public Integer updateUserLinkUser(UserLinkUser userLinkUser) throws Exception {
+		userLinkUser.setModifyDate(new Date(System.currentTimeMillis()));
+		return userDao.updateUserLinkUser(userLinkUser);
+	}
+
+	public Integer addUserLinkUser(UserLinkUser userLinkUser) throws Exception {
+		userLinkUser.setCreationDate(new Date(System.currentTimeMillis()));
+		return userDao.saveUserLinkUser(userLinkUser);
+	}
+
+	public void deleteUserLinkUserByIds(Long id) throws Exception {
+		userDao.deleteUserLinkUserByIds(id);
+	}
+
 }

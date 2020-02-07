@@ -2,6 +2,7 @@ package cn.ekgc.ltrip.transport.impl;
 
 import cn.ekgc.ltrip.pojo.vo.HotelVO;
 import cn.ekgc.ltrip.pojo.vo.SearchHotCityVO;
+import cn.ekgc.ltrip.pojo.vo.SearchHotelVO;
 import cn.ekgc.ltrip.search.transport.SearchTransport;
 import cn.ekgc.ltrip.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,10 @@ public class SearchTransportImpl implements SearchTransport {
 	@RequestMapping(value = "/searchItripHotelListByHotCity", method = RequestMethod.POST)
 	public List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO searchHotCityVO) throws Exception {
 		return searchService.searchItripHotelListByHotCity(searchHotCityVO);
+	}
+
+	@RequestMapping(value = "/hotellist/searchItripHotelPage", method = RequestMethod.POST)
+	public List<SearchHotelVO> searchItripHotelPage(@RequestBody SearchHotelVO searchHotelVO) throws Exception {
+		return searchService.searchItripHotelPage(searchHotelVO);
 	}
 }

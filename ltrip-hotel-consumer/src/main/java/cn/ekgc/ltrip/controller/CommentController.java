@@ -53,4 +53,10 @@ public class CommentController extends BaseController {
 		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, page);
 	}
 
+	/*@RequestMapping(value = "/gettraveltype", method = RequestMethod.GET)
+	public ResponseResult<Object> gettraveltype() throws Exception {
+		Page<Comment> page = commentTransport.gettraveltype();
+		return new ResponseResult<>(SuccessEnum.SUCCESS_TRUE, page);
+	}*/
+
 }

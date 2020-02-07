@@ -1,7 +1,6 @@
 package cn.ekgc.ltrip.pojo.vo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * 返回前端-酒店房型列表VO（酒店详情页）
@@ -12,7 +11,7 @@ public class HotelRoomVO implements Serializable{
     private Long id;
     private Long hotelId;
     private String roomTitle;
-    private BigDecimal roomPrice;
+    private Double roomPrice;
     private Long roomBedTypeId;
     private Integer isHavingBreakfast;
     private Integer payType;
@@ -21,91 +20,91 @@ public class HotelRoomVO implements Serializable{
     private Integer isCancel;
     private Integer isTimelyResponse;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getHotelId() {
-        return hotelId;
-    }
+	public Long getHotelId() {
+		return hotelId;
+	}
 
-    public void setHotelId(Long hotelId) {
-        this.hotelId = hotelId;
-    }
+	public void setHotelId(Long hotelId) {
+		this.hotelId = hotelId;
+	}
 
-    public String getRoomTitle() {
-        return roomTitle;
-    }
+	public String getRoomTitle() {
+		return roomTitle;
+	}
 
-    public void setRoomTitle(String roomTitle) {
-        this.roomTitle = roomTitle;
-    }
+	public void setRoomTitle(String roomTitle) {
+		this.roomTitle = roomTitle;
+	}
 
-    public BigDecimal getRoomPrice() {
-        return roomPrice;
-    }
+	public Double getRoomPrice() {
+		return roomPrice;
+	}
 
-    public void setRoomPrice(BigDecimal roomPrice) {
-        this.roomPrice = roomPrice;
-    }
+	public void setRoomPrice(Double roomPrice) {
+		this.roomPrice = roomPrice;
+	}
 
-    public Long getRoomBedTypeId() {
-        return roomBedTypeId;
-    }
+	public Long getRoomBedTypeId() {
+		return roomBedTypeId;
+	}
 
-    public void setRoomBedTypeId(Long roomBedTypeId) {
-        this.roomBedTypeId = roomBedTypeId;
-    }
+	public void setRoomBedTypeId(Long roomBedTypeId) {
+		this.roomBedTypeId = roomBedTypeId;
+	}
 
-    public Integer getIsHavingBreakfast() {
-        return isHavingBreakfast;
-    }
+	public Integer getIsHavingBreakfast() {
+		return isHavingBreakfast;
+	}
 
-    public void setIsHavingBreakfast(Integer isHavingBreakfast) {
-        this.isHavingBreakfast = isHavingBreakfast;
-    }
+	public void setIsHavingBreakfast(Integer isHavingBreakfast) {
+		this.isHavingBreakfast = isHavingBreakfast;
+	}
 
-    public Integer getPayType() {
-        return payType;
-    }
+	public Integer getPayType() {
+		return payType;
+	}
 
-    public void setPayType(Integer payType) {
-        this.payType = payType;
-    }
+	public void setPayType(Integer payType) {
+		this.payType = payType;
+	}
 
-    public Double getSatisfaction() {
-        return satisfaction;
-    }
+	public Double getSatisfaction() {
+		return satisfaction;
+	}
 
-    public void setSatisfaction(Double satisfaction) {
-        this.satisfaction = satisfaction;
-    }
+	public void setSatisfaction(Double satisfaction) {
+		this.satisfaction = satisfaction;
+	}
 
-    public Integer getIsBook() {
-        return isBook;
-    }
+	public Integer getIsBook() {
+		return isBook;
+	}
 
-    public void setIsBook(Integer isBook) {
-        this.isBook = isBook;
-    }
+	public void setIsBook(Integer isBook) {
+		this.isBook = isBook;
+	}
 
-    public Integer getIsCancel() {
-        return isCancel;
-    }
+	public Integer getIsCancel() {
+		return isCancel;
+	}
 
-    public void setIsCancel(Integer isCancel) {
-        this.isCancel = isCancel;
-    }
+	public void setIsCancel(Integer isCancel) {
+		this.isCancel = isCancel;
+	}
 
-    public Integer getIsTimelyResponse() {
-        return isTimelyResponse;
-    }
+	public Integer getIsTimelyResponse() {
+		return isTimelyResponse;
+	}
 
-    public void setIsTimelyResponse(Integer isTimelyResponse) {
-        this.isTimelyResponse = isTimelyResponse;
-    }
+	public void setIsTimelyResponse(Integer isTimelyResponse) {
+		this.isTimelyResponse = isTimelyResponse;
+	}
 }

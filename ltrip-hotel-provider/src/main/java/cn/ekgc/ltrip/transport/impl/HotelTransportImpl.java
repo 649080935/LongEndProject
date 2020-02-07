@@ -57,4 +57,8 @@ public class HotelTransportImpl implements HotelTransport {
 		return hotelService.queryHotelPolicy(id);
 	}
 
+	@RequestMapping(value = "/querytradearea", method = RequestMethod.POST)
+	public List<AreaDic> querytradearea(@RequestParam Long cityId) throws Exception {
+		return areaDicService.querytradearea(cityId);
+	}
 }

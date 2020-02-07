@@ -7,4 +7,6 @@ import java.util.List;
 public interface AreaDicService {
 
 	List<AreaDic> getHotCityByIsChina(Integer isChina)throws Exception;
+
+	List<AreaDic> querytradearea(Long cityId) throws Exception;
 }

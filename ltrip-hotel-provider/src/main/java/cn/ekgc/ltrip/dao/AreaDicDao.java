@@ -11,4 +11,5 @@ public interface AreaDicDao {
 
 	List<AreaDic> findAreaDicListByQuery(Map<String, Object> queryMap)throws Exception;
 
+	List<AreaDic> findTradeAreaByQuery(Map<String, Object> queryMap) throws Exception;
 }

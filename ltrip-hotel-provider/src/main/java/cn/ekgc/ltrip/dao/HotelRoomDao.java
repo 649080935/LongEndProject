@@ -13,4 +13,6 @@ public interface HotelRoomDao {
 	List<HotelRoom> findHotelRoomListByQuery(Map<String, Object> queryMap) throws Exception;
 
 	List<HotelImage> findHotelImageListByQuery(Map<String, Object> queryMap) throws Exception;
+
+	Integer findTotalRoomStore(Long roomId) throws Exception;
 }

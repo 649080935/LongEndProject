@@ -13,4 +13,5 @@ public interface CommentService {
 	CommentCountVO getCommentCountByHotelId(Long hotelId) throws Exception;
 
 	Page<Comment> getCommentListByPage(SearchCommentVO queryVO) throws Exception;
+
 }
